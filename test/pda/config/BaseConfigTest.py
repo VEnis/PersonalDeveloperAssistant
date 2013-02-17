@@ -32,38 +32,25 @@ class BaseConfigTest(unittest.TestCase):
         ]
 
     def test_simple_get_set(self):
-        self.config.set("myparam", "myvalue")
-        self.assertEquals(self.config.get("myparam"), "myvalue")
+        self.config["myparam"] = "myvalue"
+        self.assertEquals(self.config["myparam"], "myvalue")
 
-    def test_different_value_types(self):
-        for i, val in enumerate(self.values):
-            param_name = "param_{0}".format(i)
-            self.config.set(param_name, val)
-            self.assertEquals(self.config.get(param_name), val)
-
-    def test_different_value_types_with_dict_interface(self):
+    def test_different_value_types_support(self):
         for i, val in enumerate(self.values):
             param_name = "param_{0}".format(i)
             self.config[param_name] = val
             self.assertEquals(self.config[param_name], val)
 
-    def test_delete_possibility(self):
+    def test_possibility_to_delete(self):
         self.config["myparam"] = "myvalue"
         self.assertEquals(self.config["myparam"], "myvalue")
 
         del self.config["myparam"]
 
-        self.assertIsNone(self.config.get("myparam"))
+        with self.assertRaises(KeyError) as context:
+            self.config["myparam"]
 
-    def test_delete_possibility_with_dict_interface(self):
-        self.config["myparam"] = "myvalue"
-        self.assertEquals(self.config["myparam"], "myvalue")
-
-        self.config.delete("myparam")
-
-        self.assertIsNone(self.config.get("myparam"))
-
-    def test_key_availability(self):
+    def test_key_availability_checking(self):
         self.assertFalse("myparam" in self.config)
         self.config["myparam"] = "myvalue"
         self.assertTrue("myparam" in self.config)
