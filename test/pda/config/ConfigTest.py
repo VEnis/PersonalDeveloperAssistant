@@ -48,7 +48,7 @@ class ConfigTest(unittest.TestCase):
         del self.config["myparam"]
 
         with self.assertRaises(KeyError) as context:
-            self.config["myparam"]
+            value = self.config["myparam"]
 
     def test_key_availability_checking(self):
         self.assertFalse("myparam" in self.config)
