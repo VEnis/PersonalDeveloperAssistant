@@ -14,7 +14,8 @@ class HostConfig(PersistentConfig):
     def __init__(self, dict=None, **kwargs):
         PersistentConfig.__init__(self, dict, **kwargs)
 
-    def getPersistentPath(self):
+    @staticmethod
+    def getPersistentPath():
         """
         Returns path where data was stored.
 

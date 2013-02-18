@@ -32,7 +32,8 @@ class PersistentConfig(Config):
             with open(self.getPersistentPath(), "rb") as persistent_file:
                 self.data = pickle.load(persistent_file)
 
-    def getPersistentPath(self):
+    @staticmethod
+    def getPersistentPath():
         """
         Returns path where data was stored.
 
