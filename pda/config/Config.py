@@ -1,13 +1,13 @@
 """
-Module that contains implementation of the base configuration class
+Module that contains implementation of the configuration class
 """
 
 from UserDict import IterableUserDict
 
 
-class BaseConfig(IterableUserDict):
+class Config(IterableUserDict):
     """
-    Implementation of the base configuration class
+    Implementation of the configuration class
     """
 
     def __init__(self, dict=None, **kwargs):

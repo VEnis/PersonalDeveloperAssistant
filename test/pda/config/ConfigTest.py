@@ -2,12 +2,12 @@
 from types import IntType
 
 import unittest
-from pda.config.BaseConfig import BaseConfig
+from pda.config.Config import Config
 
 
-class BaseConfigTest(unittest.TestCase):
+class ConfigTest(unittest.TestCase):
     def setUp(self):
-        self.config = BaseConfig()
+        self.config = Config()
 
         def tmp_fun(param):
             pass
@@ -54,6 +54,11 @@ class BaseConfigTest(unittest.TestCase):
         self.assertFalse("myparam" in self.config)
         self.config["myparam"] = "myvalue"
         self.assertTrue("myparam" in self.config)
+
+    def test_default_values(self):
+        config = Config({"param1": "value1", "param2": 10})
+        self.assertEquals(config["param1"], "value1")
+        self.assertEquals(config["param2"], 10)
 
 if __name__ == '__main__':
     unittest.main()
