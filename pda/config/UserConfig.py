@@ -2,7 +2,7 @@
 Module that contains implementation of the user-related configuration class
 """
 
-from config.PersistentConfig import PersistentConfig
+from pda.config.PersistentConfig import PersistentConfig
 import os
 
 
@@ -14,7 +14,6 @@ class UserConfig(PersistentConfig):
     def __init__(self, dict=None, **kwargs):
         PersistentConfig.__init__(self, dict, **kwargs)
 
-
     def getPersistentPath(self):
         """
         Returns path where data was stored.
@@ -25,11 +24,3 @@ class UserConfig(PersistentConfig):
 
     def __del__(self):
         PersistentConfig.__del__(self)
-
-
-
-
-
-
-
-
