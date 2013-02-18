@@ -1,6 +1,7 @@
 """
 Module that contains implementation of the host-related configuration class
 """
+import sys
 
 from pda.config.PersistentConfig import PersistentConfig
 import os
@@ -21,7 +22,10 @@ class HostConfig(PersistentConfig):
 
         Looks like: "C:/Users/[username]/pda.user.cfg"
         """
-        return os.path.join(os.getenv('ALLUSERSPROFILE'), "pda.host.cfg")
+        if sys.platform == "win32":
+            return os.path.join(os.getenv('ALLUSERSPROFILE'), "pda.host.cfg")
+        else:
+            raise NotImplementedError("HostConfig for non-windows is not implemented yet")
 
     def __del__(self):
         PersistentConfig.__del__(self)

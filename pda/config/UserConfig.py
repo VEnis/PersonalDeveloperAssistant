@@ -1,6 +1,7 @@
 """
 Module that contains implementation of the user-related configuration class
 """
+import sys
 
 from pda.config.PersistentConfig import PersistentConfig
 import os
@@ -21,7 +22,9 @@ class UserConfig(PersistentConfig):
 
         Looks like: "C:/Users/[username]/pda.user.cfg"
         """
-        return os.path.join(os.getenv('USERPROFILE'), "pda.user.cfg")
-
+        if sys.platform == "win32":
+            return os.path.join(os.getenv('USERPROFILE'), "pda.user.cfg")
+        else:
+            return os.path.expanduser("~/pda.user.cfg")
     def __del__(self):
         PersistentConfig.__del__(self)
