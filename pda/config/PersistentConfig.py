@@ -1,7 +1,7 @@
 """
 Module that contains implementation of the configuration class that is automatically stored persistently
 """
-
+import os
 import pickle
 from pda.config.Config import Config
 
@@ -20,7 +20,7 @@ class PersistentConfig(Config):
         Container data is saved to the path returned by getPersistentPath function
         """
         with open(self.getPersistentPath(), "wb") as persistent_file:
-            pickle.dump(self.data, persistent_file, UserConfig.pickle_protocol_version)
+            pickle.dump(self.data, persistent_file, PersistentConfig.pickle_protocol_version)
 
     def load(self):
         """
@@ -28,8 +28,9 @@ class PersistentConfig(Config):
 
         Container data is loaded from path returned by getPersistentPath function
         """
-        with open(self.getPersistentPath(), "rb") as persistent_file:
-            self.data = pickle.load(persistent_file)
+        if os.path.exists(self.getPersistentPath()):
+            with open(self.getPersistentPath(), "rb") as persistent_file:
+                self.data = pickle.load(persistent_file)
 
     def getPersistentPath(self):
         """
