@@ -23,7 +23,6 @@ class CompositeConfig(Config):
                     raise ValueError("Some items in the configs list does not inherited from pda.config.Config")
                 else:
                     self.configs = configs
-                    self.configs.reverse()
 
     def get(self, key, failobj=None):
         if key not in self:
@@ -70,7 +69,7 @@ class CompositeConfig(Config):
 
     def _get_data_from_all_configs(self):
         result = {}
-        for config in self.configs:
+        for config in reversed(self.configs):
             result.update(config.data)
 
         result.update(self.data)
