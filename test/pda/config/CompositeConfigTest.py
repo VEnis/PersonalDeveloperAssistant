@@ -180,5 +180,15 @@ class CompositeConfigTest(unittest.TestCase):
 
         self.assertEqual(context.exception.message, 'Some items in the configs list does not inherited from pda.config.Config')
 
+    def test_changing_internal_configs_correctly_handled(self):
+        self.assertEqual(self.config["middle_param1"], "middle_value1")
+
+        self.config.configs[1]["middle_param1"] = "updated_middle_value"
+        self.assertEqual(self.config["middle_param1"], "updated_middle_value")
+
+        print self.config.configs[2]
+        self.config.configs[2]["common_param"] = "updated_common_value"
+        self.assertEqual(self.config["common_param"], "top_value")
+
 if __name__ == '__main__':
     unittest.main()
