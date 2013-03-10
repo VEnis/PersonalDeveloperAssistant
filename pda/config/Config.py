@@ -1,14 +1,12 @@
 """
 Module that contains implementation of the configuration class
 """
+from collections import UserDict
 
-from UserDict import IterableUserDict
-
-
-class Config(IterableUserDict):
+class Config(UserDict):
     """
     Implementation of the configuration class
     """
 
     def __init__(self, dict=None, **kwargs):
-        IterableUserDict.__init__(self, dict, **kwargs)
+        UserDict.__init__(self, dict, **kwargs)

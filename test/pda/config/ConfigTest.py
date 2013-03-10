@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-from types import IntType
-
 import unittest
 from pda.config.Config import Config
 
@@ -16,7 +14,6 @@ class ConfigTest(unittest.TestCase):
             5,
             True,
             int(10),
-            long(123123),
             float(10.57),
             complex(1, 2),
             "MyString",
@@ -27,7 +24,6 @@ class ConfigTest(unittest.TestCase):
             {'orange', 'pear', 'apple', 'banana'},
             {'jack': 4098, 'sjoerd': 4127},
             tmp_fun,
-            IntType,
             None
         ]
 

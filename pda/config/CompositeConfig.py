@@ -1,7 +1,7 @@
 """
 Module that contains implementation of the composite configuration class
 """
-import types
+from collections import Iterable
 
 from pda.config.Config import Config
 
@@ -16,11 +16,11 @@ class CompositeConfig(Config):
 
         self.configs = []
         if configs is not None:
-            if not isinstance(configs, types.ListType):
-                raise ValueError("Passed configs value is not List")
+            if not isinstance(configs, Iterable):
+                raise TypeError("Passed configs value is not List")
             else:
                 if not all(isinstance(c, Config) for c in configs):
-                    raise ValueError("Some items in the configs list does not inherited from pda.config.Config")
+                    raise TypeError("Some items in the configs list does not inherited from pda.config.Config")
                 else:
                     self.configs = configs
 
@@ -40,23 +40,14 @@ class CompositeConfig(Config):
     def __len__(self):
         return len(self._get_data_from_all_configs())
 
-    def has_key(self, key):
-        return key in self._get_data_from_all_configs()
-
-    def itervalues(self):
-        return self._get_data_from_all_configs().itervalues()
+    def __iter__(self):
+        return self._get_data_from_all_configs().__iter__()
 
     def values(self):
         return self._get_data_from_all_configs().values()
 
-    def iteritems(self):
-        return self._get_data_from_all_configs().iteritems()
-
     def items(self):
         return self._get_data_from_all_configs().items()
-
-    def iterkeys(self):
-        return self._get_data_from_all_configs().iterkeys()
 
     def keys(self):
         return self._get_data_from_all_configs().keys()

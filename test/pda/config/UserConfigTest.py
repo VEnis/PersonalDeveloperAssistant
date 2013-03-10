@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-from types import IntType
 
 import unittest
 from pda.config.UserConfig import UserConfig
@@ -14,7 +13,6 @@ class UserConfigTest(unittest.TestCase):
             5,
             True,
             int(10),
-            long(123123),
             float(10.57),
             #complex(1, 2),
             "MyString",
