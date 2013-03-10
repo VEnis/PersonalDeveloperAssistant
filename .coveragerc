@@ -1,0 +1,10 @@
+[run]
+branch = True
+include =
+    pda/*
+
+[html]
+directory = build/coverage/html
+
+[xml]
+output = build/coverage/coverage.xml
